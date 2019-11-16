@@ -18,7 +18,7 @@ detectorArgs="face_detection_model"
 embeddingModelArgs="openface_nn4.small2.v1.t7"
 recognizerArgs= "output/recognizer.pickle"
 labelArgs= "output/le.pickle"
-confidenceArgs=0.6
+confidenceTreshold=0.6
 
 # load our serialized face detector from disk
 print("[INFO] loading face detector...")
@@ -71,7 +71,7 @@ while True:
 		confidence = detections[0, 0, i, 2]
 
 		# filter out weak detections
-		if confidence > confidenceArgs:
+		if confidence > confidenceTreshold:
 			# compute the (x, y)-coordinates of the bounding box for
 			# the face
 			box = detections[0, 0, i, 3:7] * np.array([w, h, w, h])
@@ -101,7 +101,8 @@ while True:
 
 			# draw the bounding box of the face along with the
 			# associated probability
-			text = "{}: {:.2f}%".format(name, proba * 100)
+			# text = "{}: {:.2f}%".format(name, proba * 100)
+			text = name
 			y = startY - 10 if startY - 10 > 10 else startY + 10
 			cv2.rectangle(frame, (startX, startY), (endX, endY),
 				(0, 100, 0), 2)
