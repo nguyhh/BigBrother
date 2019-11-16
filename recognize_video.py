@@ -18,7 +18,7 @@ detectorArgs="face_detection_model"
 embeddingModelArgs="openface_nn4.small2.v1.t7"
 recognizerArgs= "output/recognizer.pickle"
 labelArgs= "output/le.pickle"
-confidenceTreshold=0.6
+confidenceTreshold=0.8
 
 # load our serialized face detector from disk
 print("[INFO] loading face detector...")

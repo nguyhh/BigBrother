@@ -15,7 +15,7 @@ detectorArg = "face_detection_model"
 embeddingModelArg = "openface_nn4.small2.v1.t7"
 datasetArg= "dataset"
 embeddingsArgs="output/embeddings.pickle"
-confidenceArgs=0.6
+confidenceArgs=0.5
 
 print("[INFO] loading face detector...")
 protoPath = os.path.sep.join([detectorArg, "deploy.prototxt"])
