@@ -10,16 +10,17 @@ r1 = requests.get('https://pidgey2.azurewebsites.net/yulcode/employees')
 r1obj = r1.json()
 path = os.getcwd()
 for i in r1obj:
-    os.mkdir(str(i["id"]))
+    os.mkdir(path + "/dataset/" + str(i["name"]))
     
 
 # Step 2: for loop to retrieve picture
 for i in r1obj:
     id = i["id"]
+    name = i["name"]
     print(id)
     r2 = requests.get('https://pidgey2.azurewebsites.net/yulcode/employees/' + str(id) + '/photo', stream = True)
     with io.BytesIO(r2.content) as f:
         with Image.open(f) as img:
-            img.save(path + "/" + str(id) + "/" + str(i["name"]) + ".jpeg")
+            img.save(path + "/dataset/" + str(name) + "/" + str(i["name"]) + ".jpeg")
 
 
