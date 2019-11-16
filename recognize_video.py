@@ -99,15 +99,23 @@ while True:
 			proba = preds[j]
 			name = le.classes_[j]
 
+			if(name == 'unknown'):
+				text = name
+				y = startY - 10 if startY - 10 > 10 else startY + 10
+				cv2.rectangle(frame, (startX, startY), (endX, endY),
+					(100, 0, 0), 2)
+				cv2.putText(frame, text, (startX, y),
+					cv2.FONT_HERSHEY_SIMPLEX, 0.45, (0, 0, 255), 2)
 			# draw the bounding box of the face along with the
 			# associated probability
 			# text = "{}: {:.2f}%".format(name, proba * 100)
-			text = name
-			y = startY - 10 if startY - 10 > 10 else startY + 10
-			cv2.rectangle(frame, (startX, startY), (endX, endY),
-				(0, 100, 0), 2)
-			cv2.putText(frame, text, (startX, y),
-				cv2.FONT_HERSHEY_SIMPLEX, 0.45, (0, 100, 0), 2)
+			else:
+				text = name
+				y = startY - 10 if startY - 10 > 10 else startY + 10
+				cv2.rectangle(frame, (startX, startY), (endX, endY),
+					(0, 100, 0), 2)
+				cv2.putText(frame, text, (startX, y),
+					cv2.FONT_HERSHEY_SIMPLEX, 0.45, (0, 100, 0), 2)
 
 	# update the FPS counter
 	fps.update()
